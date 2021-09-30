@@ -3,6 +3,7 @@ package ch.home.bank.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import ch.home.bank.service.ServiceUser;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ControllerUser {
 	
 	@Autowired
@@ -39,11 +41,11 @@ public class ControllerUser {
 	@PatchMapping("/{id}")
 	public void patch(@RequestBody User user, @PathVariable(required = true, value="id") int id) {
 		User userPatched = serviceUser.getById(id);
-		userPatched.setNom(user.getNom());
-		userPatched.setPrenom(user.getPrenom());
-		userPatched.setDate_de_naissance(user.getDate_de_naissance());
-		userPatched.setDate_debut_contrat(user.getDate_debut_contrat());
-		userPatched.setDate_fin_contrat(user.getDate_debut_contrat());
+		userPatched.setFirstName(user.getFirstName());
+		userPatched.setSecondName(user.getSecondName());
+		userPatched.setBirthDay(user.getBirthDay());
+		userPatched.setStartDate(user.getStartDate());
+		userPatched.setEndDate(user.getEndDate());
 		
 		 serviceUser.updateUser(userPatched);
 	}

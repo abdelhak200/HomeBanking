@@ -17,62 +17,62 @@ public class User {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer Id;
-	private String  Prenom;
-	private String Nom;
-	private LocalDate Date_de_naissance;
-	private LocalDateTime Date_debut_contrat;
-	private LocalDateTime Date_fin_contrat;
+	private Integer id;
+	private String  firstName;
+	private String secondName;
+	private LocalDate birthDay;
+	private LocalDateTime startDate;
+	private LocalDateTime endDate;
 	
-	public User(String prenom, String nom, LocalDate date_de_naissance, LocalDateTime date_debut_contrat,
-			LocalDateTime date_fin_contrat) {
-		Prenom = prenom;
-		Nom = nom;
-		Date_de_naissance = date_de_naissance;
-		Date_debut_contrat = date_debut_contrat;
-		Date_fin_contrat = date_fin_contrat;
-	}
-
 	public User() {}
 
-	public String getPrenom() {
-		return Prenom;
+	public User(String firstName, String secondName, LocalDate birthDay, LocalDateTime startDate,
+			LocalDateTime endDate) {
+		this.firstName = firstName;
+		this.secondName = secondName;
+		this.birthDay = birthDay;
+		this.startDate = startDate;
+		this.endDate = endDate;
 	}
 
-	public void setPrenom(String prenom) {
-		Prenom = prenom;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public String getNom() {
-		return Nom;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public void setNom(String nom) {
-		Nom = nom;
+	public String getSecondName() {
+		return secondName;
 	}
 
-	public LocalDate getDate_de_naissance() {
-		return Date_de_naissance;
+	public void setSecondName(String secondName) {
+		this.secondName = secondName;
 	}
 
-	public void setDate_de_naissance(LocalDate date_de_naissance) {
-		Date_de_naissance = date_de_naissance;
+	public LocalDate getBirthDay() {
+		return birthDay;
 	}
 
-	public LocalDateTime getDate_debut_contrat() {
-		return Date_debut_contrat;
+	public void setBirthDay(LocalDate birthDay) {
+		this.birthDay = birthDay;
 	}
 
-	public void setDate_debut_contrat(LocalDateTime date_debut_contrat) {
-		Date_debut_contrat = date_debut_contrat;
+	public LocalDateTime getStartDate() {
+		return startDate;
 	}
 
-	public LocalDateTime getDate_fin_contrat() {
-		return Date_fin_contrat;
+	public void setStartDate(LocalDateTime startDate) {
+		this.startDate = startDate;
 	}
 
-	public void setDate_fin_contrat(LocalDateTime date_fin_contrat) {
-		Date_fin_contrat = date_fin_contrat;
+	public LocalDateTime getEndDate() {
+		return endDate;
 	}
 
+	public void setEndDate(LocalDateTime endDate) {
+		this.endDate = endDate;
+	}
+	
 }
