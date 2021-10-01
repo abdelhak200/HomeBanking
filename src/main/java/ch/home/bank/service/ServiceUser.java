@@ -35,4 +35,12 @@ public class ServiceUser {
 		userRepository.save(user);
 	}
 
+	public void deleteUserById(Integer id) {
+		userRepository.deleteById(id);
+	}
+
+	public List<User> getByName(String name) {
+		return (List<User>) userRepository.findByName(name);
+	}
+
 }

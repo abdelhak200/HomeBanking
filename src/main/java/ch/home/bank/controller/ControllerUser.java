@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,9 +34,19 @@ public class ControllerUser {
 		 serviceUser.addUser(user);
 	}
 	
+	@DeleteMapping
+	public void deleteUserById(@PathVariable(required = false, value="id") Integer id) {
+		 serviceUser.deleteUserById(id);
+	}
+	
 	@GetMapping("/{id}")
 	public User getByID(@PathVariable(required = false, value="id") Integer id){
 		return serviceUser.getById(id);
+	}
+	
+	@GetMapping("/{name}")
+	public List<User> getByNmae(@PathVariable(required = false, value="name") String name){
+		return serviceUser.getByName(name);
 	}
 	
 	@PatchMapping("/{id}")
