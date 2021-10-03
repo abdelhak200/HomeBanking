@@ -1,5 +1,6 @@
 package ch.home.bank.entity;
 
+import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Column;
@@ -9,7 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name="USERS")
-public class User {
+public class User implements Serializable	{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private static DateTimeFormatter FORMAT_DATE_HOUR = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
 	private static DateTimeFormatter FORMAT_DATE = DateTimeFormatter.ofPattern("dd.MM.yyyy");
