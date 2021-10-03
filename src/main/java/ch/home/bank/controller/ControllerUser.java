@@ -3,6 +3,9 @@ package ch.home.bank.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.home.bank.entity.User;
@@ -30,8 +34,9 @@ public class ControllerUser {
 	}
 	
 	@PostMapping
-	public void addUser(@RequestBody User user) {
-		 serviceUser.addUser(user);
+	public ResponseEntity<User> addUser(@Validated @RequestBody User user) {
+		 User savedUser = serviceUser.addUser(user);
+			return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping
@@ -40,18 +45,18 @@ public class ControllerUser {
 	}
 	
 	@GetMapping("/{id}")
-	public User getByID(@PathVariable(required = false, value="id") Integer id){
-		return serviceUser.getById(id);
+	public User getByID(@Validated @PathVariable(required = false, value="id") Integer id){
+		return serviceUser.findById(id);
 	}
 	
-	@GetMapping("/{name}")
-	public List<User> getByNmae(@PathVariable(required = false, value="name") String name){
-		return serviceUser.getByName(name);
+	@GetMapping("/param{name}")
+	public List<User> getByNmae(@Validated @RequestParam(required = false) String name){
+		return serviceUser.findByName(name);
 	}
 	
 	@PatchMapping("/{id}")
 	public void patch(@RequestBody User user, @PathVariable(required = true, value="id") int id) {
-		User userPatched = serviceUser.getById(id);
+		User userPatched = serviceUser.findById(id);
 		userPatched.setFirstName(user.getFirstName());
 		userPatched.setSecondName(user.getSecondName());
 		userPatched.setBirthDay(user.getBirthDay());

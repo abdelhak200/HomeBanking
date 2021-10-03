@@ -1,33 +1,37 @@
 package ch.home.bank.entity;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Entity(name="USERS")
 public class User {
+	
+	private static DateTimeFormatter FORMAT_DATE_HOUR = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+	private static DateTimeFormatter FORMAT_DATE = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+    @Column(name = "FIRST_NAME")
 	private String  firstName;
+    @Column(name = "SECOND_NAME")
 	private String secondName;
-	private LocalDate birthDay;
-	private LocalDateTime startDate;
-	private LocalDateTime endDate;
+    @Column(name = "BIRTH_DATE")
+	private String birthDay;
+    @Column(name = "START_DATE")
+	private String startDate;
+    @Column(name = "END_DATE")
+	private String endDate;
 	
 	public User() {}
 
-	public User(String firstName, String secondName, LocalDate birthDay, LocalDateTime startDate,
-			LocalDateTime endDate) {
+	public User(String firstName, String secondName, String birthDay, String startDate,
+			String endDate) {
 		this.firstName = firstName;
 		this.secondName = secondName;
 		this.birthDay = birthDay;
@@ -51,27 +55,27 @@ public class User {
 		this.secondName = secondName;
 	}
 
-	public LocalDate getBirthDay() {
+	public String getBirthDay() {
 		return birthDay;
 	}
 
-	public void setBirthDay(LocalDate birthDay) {
+	public void setBirthDay(String birthDay) {
 		this.birthDay = birthDay;
 	}
 
-	public LocalDateTime getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(LocalDateTime startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
-	public LocalDateTime getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(LocalDateTime endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 	

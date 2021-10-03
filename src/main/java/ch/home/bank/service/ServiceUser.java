@@ -25,9 +25,7 @@ public class ServiceUser {
 		return userRepository.save(user);
 	}
 
-	public User getById(int id) {
-		// return list.stream().filter(uti
-		// ->nom.equals(uti.getNom())).findFirst().orElse(new User());
+	public User findById(int id) {
 		return userRepository.findById(id).orElse(new User());
 	}
 
@@ -39,7 +37,7 @@ public class ServiceUser {
 		userRepository.deleteById(id);
 	}
 
-	public List<User> getByName(String name) {
+	public List<User> findByName(String name) {
 		return (List<User>) userRepository.findByName(name);
 	}
 
