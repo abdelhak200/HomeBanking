@@ -29,16 +29,16 @@ public class ServiceUser {
 		return userRepository.findById(id).orElse(new User());
 	}
 
-	public void updateUser(User user) {
-		userRepository.save(user);
+	public User updateUser(User user) {
+		return userRepository.saveAndFlush(user);
 	}
 
 	public void deleteUserById(Integer id) {
 		userRepository.deleteById(id);
 	}
 
-	public List<User> findByName(String name) {
-		return (List<User>) userRepository.findByName(name);
+	public List<User> findByName(String firstName) {
+		return (List<User>) userRepository.findByFirstName(firstName);
 	}
 
 }

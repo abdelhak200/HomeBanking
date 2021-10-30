@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,18 +40,25 @@ public class ControllerUser {
 			return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping
+	@DeleteMapping("/{id}")
 	public void deleteUserById(@PathVariable(required = false, value="id") Integer id) {
 		 serviceUser.deleteUserById(id);
 	}
 	
 	@GetMapping("/{id}")
-	public User getByID(@Validated @PathVariable(required = false, value="id") Integer id){
+	public User getByID(@PathVariable(required = false, value="id") Integer id){
 		return serviceUser.findById(id);
 	}
 	
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable(value = "id") Integer Id,
+         @Validated @RequestBody User user) {
+    	User updateUser = serviceUser.updateUser(user);
+    	return new ResponseEntity<User>(updateUser, HttpStatus.CREATED);
+    }
+	
 	@GetMapping("/param{name}")
-	public List<User> getByNmae(@Validated @RequestParam(required = false) String name){
+	public List<User> getByNmae(@RequestParam(required = false) String name){
 		return serviceUser.findByName(name);
 	}
 	

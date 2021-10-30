@@ -10,8 +10,7 @@ import ch.home.bank.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-	
-	@Query(value ="SELECT * FROM USERS WHERE FIRST_NAME like %?1% OR SECOND_NAME like %?1% ", 
-			  nativeQuery = true)
-    List<User> findByName(String name);
+
+	@Query(value = "SELECT * FROM USERS WHERE FIRST_NAME like %?1% OR SECOND_NAME like %?1% ", nativeQuery = true)
+	List<User> findByFirstName(String firstName);
 }

@@ -22,6 +22,7 @@ public class User implements Serializable	{
 	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
 	private Integer id;
     @Column(name = "FIRST_NAME")
 	private String  firstName;
@@ -36,13 +37,20 @@ public class User implements Serializable	{
 	
 	public User() {}
 
-	public User(String firstName, String secondName, String birthDay, String startDate,
-			String endDate) {
+	public User(String firstName, String secondName, String birthDay, String startDate, String endDate) {
 		this.firstName = firstName;
 		this.secondName = secondName;
 		this.birthDay = birthDay;
 		this.startDate = startDate;
 		this.endDate = endDate;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
