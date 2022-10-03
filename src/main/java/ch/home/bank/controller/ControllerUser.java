@@ -30,8 +30,8 @@ public class ControllerUser {
 	private ServiceUser serviceUser;
 	
 	@GetMapping
-	public List<User> getAll(){
-		return serviceUser.getAll();
+	public ResponseEntity<List<User>> getAll(){
+		return new ResponseEntity<List<User>>(serviceUser.getAll(), HttpStatus.OK);
 	}
 	
 	@PostMapping
@@ -46,8 +46,8 @@ public class ControllerUser {
 	}
 	
 	@GetMapping("/{id}")
-	public User getByID(@PathVariable(required = false, value="id") Integer id){
-		return serviceUser.findById(id);
+	public ResponseEntity<List<User>> getByID(@PathVariable(required = false, value="id") Integer id){
+		return new ResponseEntity<List<User>>(serviceUser.findById(id), HttpStatus.OK);
 	}
 	
     @PutMapping("/{id}")
@@ -58,10 +58,10 @@ public class ControllerUser {
     }
 	
 	@GetMapping("/param{name}")
-	public List<User> getByNmae(@RequestParam(required = false) String name){
-		return serviceUser.findByName(name);
+	public ResponseEntity<List<User>> getByName(@RequestParam(required = false) String name){
+		return new ResponseEntity<List<User>>(serviceUser.findByName(name), HttpStatus.OK);
 	}
-	
+	/*
 	@PatchMapping("/{id}")
 	public void patch(@RequestBody User user, @PathVariable(required = true, value="id") int id) {
 		User userPatched = serviceUser.findById(id);
@@ -73,4 +73,5 @@ public class ControllerUser {
 		
 		 serviceUser.updateUser(userPatched);
 	}
+	*/
 }

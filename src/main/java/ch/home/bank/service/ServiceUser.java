@@ -1,14 +1,17 @@
 package ch.home.bank.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ch.home.bank.entity.User;
 import ch.home.bank.repository.UserRepository;
 
 @Service
+@Transactional
 public class ServiceUser {
 
 	@Autowired
@@ -25,8 +28,10 @@ public class ServiceUser {
 		return userRepository.save(user);
 	}
 
-	public User findById(int id) {
-		return userRepository.findById(id).orElse(new User());
+	public List<User> findById(Integer id) {
+		List<User> list = new ArrayList<User>();
+		list.add(userRepository.findById(id).orElse(new User()));
+		return list;
 	}
 
 	public User updateUser(User user) {
